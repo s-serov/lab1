@@ -1,0 +1,13 @@
+# CMake build directories
+/build/
+/out/
+CMakeCache.txt
+CMakeFiles/
+
+# Visual Studio files
+/.vs/
+*.user
+*.suo
+x64/
+Debug/
+Release/
