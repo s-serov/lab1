@@ -1,39 +1,32 @@
 #include <iostream>
-#include "shared_types.h"
-
-int main() {
-    std::cout << "Project initialized successfully." << std::endl;
-    return 0;
-}
-
-#include <iostream>
 #include <memory>
 #include <iomanip>
 #include "shared_types.h"
 
 int main() {
-    auto data = std::make_shared<const InputData>(InputData{
-        .a = 1.0,
-        .b = -6.0,
-        .c = 11.0,
-        .d = -6.0
-    });
+    auto input = std::make_shared<InputData>();
+    input->a = 1.0;
+    input->b = -6.0;
+    input->c = 11.0;
+    input->d = -6.0;
 
-    std::cout << "=== Student A: Cardano Method ===\n";
+    std::shared_ptr<const InputData> data = input;
+
+    std::cout << "=== Student A: Cardano Method ===" << std::endl;
     std::cout << "Equation: " << data->a << "x^3 + (" 
               << data->b << ")x^2 + (" 
               << data->c << ")x + (" 
-              << data->d << ") = 0\n\n";
+              << data->d << ") = 0\n" << std::endl;
 
     auto resultA = calculateA(data);
     auto [rootsA, residualsA, itersA] = *resultA;
 
-    std::cout << "Iterations: " << itersA << "\n";
-    std::cout << "Found roots count: " << rootsA.size() << "\n";
+    std::cout << "Iterations: " << itersA << std::endl;
+    std::cout << "Found roots count: " << rootsA.size() << std::endl;
 
     for (size_t i = 0; i < rootsA.size(); ++i) {
         std::cout << "x" << i + 1 << " = " << std::fixed << std::setprecision(6) << rootsA[i] 
-                  << " | Residual: " << std::scientific << residualsA[i] << "\n";
+                  << " | Residual: " << std::scientific << residualsA[i] << std::endl;
     }
 
     return 0;
